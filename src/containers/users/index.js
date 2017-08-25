@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import UserAPI from '../../api/user';
 
-const API = new UserAPI();
-
-const Users = () => {
-    const allUsers = API.all();
+const Users = (props) => {
+    const allUsers = props.guys ? props.guys : []
+    console.warn(allUsers);
 
     return(
         <div>

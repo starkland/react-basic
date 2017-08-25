@@ -1,19 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
 
 import Header from './components/header';
 import Main from './components/main';
 
+import { updateCurrentGuy } from './reducers/guys';
+
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Header />
-        <Main />
-      </div>
-    );
-  }
-}
+const App = (props) => (
+  <div className="App">
+    <Header />
+    <Main guys={props.guys} />
+  </div>
+)
 
-export default App;
+// withRouter to fix the react-router + redux issue
+const routerConnected = withRouter(connect((state) => state, {updateCurrentGuy})(App))
+
+export default routerConnected;
